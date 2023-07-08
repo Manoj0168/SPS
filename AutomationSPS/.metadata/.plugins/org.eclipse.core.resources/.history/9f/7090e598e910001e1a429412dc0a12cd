@@ -1,0 +1,20 @@
+https://iot.hyperthink.io:7001/
+
+url =https://demo.sps.hyperthings.in/
+
+admin@stagingsp.com
+
+username =admin@sp.in
+password =hyperthings@1234
+
+//PEusername = bwi_pe@4s.com
+//PEpassword = secure@2020
+
+chromeDriverPath =D:\\AutomationSPS\\software\\chromedriver.exe
+firefoxDriverPath =D:\\AutomationSPS\\software\\geckodriver.exe
+edgeDriverPath =D:\\AutomationSPS\\software\\msedgedriver.exe
+
+browser=chrome
+
+Login = C:\\Users\\Admin\\Desktop\\Excel\\Login.xlsx
+SiteMonitoring = C:\\Users\\Admin\\Desktop\\Excel\\SiteMonitoring.xlsx

@@ -1,0 +1,168 @@
+package MainSiteSubscriptionSettingsFun;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+import Base.BasePage;
+
+public class PaymentsFun extends BasePage
+ {
+  public PaymentsFun() throws IOException
+   {
+	super();
+    PageFactory.initElements(driver,this);
+   }
+  File FileLocation;
+  FileInputStream FileName;
+  XSSFWorkbook Work;
+  XSSFSheet sheet;
+  @FindBy(xpath="//div[@class=\"ant-pro-sider-links\"]")
+      WebElement more;
+         public void Extendbutton()
+          {
+ 	      more.click();
+          }
+  @FindBy(xpath="//span[contains(.,'Successfully')]")
+      WebElement msg;
+         public void Message() throws IOException
+          {
+           String ms=msg.getText();
+           System.out.println(ms);
+          }
+  @FindBy(xpath="//span[.='Sites']")
+      WebElement site;
+         public void sitebutton()
+         {
+          site.click();
+         }	
+  @FindBy(xpath="//input[@type=\"text\"]")
+      WebElement ser;
+         public void SearchMainSite()
+          {
+           try
+            {
+          	 FileLocation=new File("./Data/Site.xlsx");
+             FileName=new FileInputStream(FileLocation);
+             Work = new XSSFWorkbook(FileName);
+             sheet=Work.getSheetAt(0);
+             String data=sheet.getRow(0).getCell(1).getStringCellValue();
+         	 ser.sendKeys(data);
+            }
+           catch(Exception e) 
+            {
+  			System.out.println(e.getMessage());
+  			System.out.println(e.getCause());
+  			e.printStackTrace();
+  		   }
+         }
+  @FindBy(xpath="//span[@aria-label=\"edit\"]")
+      WebElement edi;
+         public void EditButton()
+          {
+           edi.click();
+  		  }
+  @FindBy(xpath="(//div[.='Subscription Settings'])[2]")
+      WebElement subset;
+         public void SubscriptionSettingsButton()
+          {
+           subset.click();
+		  }
+   @FindBy(xpath="(//div[.='Payments'])[1]")
+       WebElement pay;
+        public void PaymentsButton()
+         {
+          pay.click();
+   		 }
+   public void PayoutSettings() throws InterruptedException
+    {
+     WebElement po=driver.findElement(By.xpath("(//label[.='Payout Settings']/../following-sibling::div[1]//div[1]//div[1])[1]"));
+	 JavascriptExecutor js=(JavascriptExecutor)driver;
+	 js.executeScript("arguments[0].scrollIntoView();",po);
+	 po.click();
+	 Thread.sleep(1000);
+	 driver.findElement(By.xpath("(//div[.='Daily'])[2]")).click();
+    }
+   public void VendorsA1()
+   {
+    WebElement ve=driver.findElement(By.xpath("(//div[@class=\"ant-select ant-select-in-form-item ant-select-single ant-select-allow-clear ant-select-show-arrow\"])[1]"));
+	JavascriptExecutor js=(JavascriptExecutor)driver;
+	js.executeScript("arguments[0].scrollIntoView();",ve);
+	ve.click();
+	driver.findElement(By.xpath("(//div[@class=\"ant-select-item-option-content\"])[5]")).click();
+   }
+    @FindBy(xpath="//button[.='Add Vendor']")
+      WebElement add;
+         public void AddVendor()
+          {
+        	add.click();
+		  }
+  public void VendorsA2()
+   {
+    WebElement ve=driver.findElement(By.xpath("(//div[@class=\"ant-select ant-select-in-form-item ant-select-single ant-select-allow-clear ant-select-show-arrow\"])[1]"));
+    JavascriptExecutor js=(JavascriptExecutor)driver;
+    js.executeScript("arguments[0].scrollIntoView();",ve);
+    ve.click();
+    driver.findElement(By.xpath("(//div[@class=\"ant-select-item-option-content\"])[6]")).click();
+   }
+  @FindBy(xpath="//input[@id=\"basic_vendorPayoutSettingsUsingId_1_percentage\"]")
+      WebElement pera2;
+         public void PercentageA2() 
+          {
+           pera2.sendKeys("50");
+	      }
+  @FindBy(xpath="(//div[@class=\"ant-row ant-row-end\"]//button)[2]")
+      WebElement sav;
+         public void SaveButton()
+          {
+           sav.click();
+		  }
+  //Edit
+  public void VendorsE1()
+   {
+	WebElement ve=driver.findElement(By.xpath("//label[.='Vendors']/../following-sibling::div[1]"));
+	JavascriptExecutor js=(JavascriptExecutor)driver;
+	js.executeScript("arguments[0].scrollIntoView();",ve);
+	ve.click();
+	driver.findElement(By.xpath("(//div[.='new vendor'])[2]")).click();
+   }
+ @FindBy(xpath="//input[@id=\"basic_vendorPayoutSettingsUsingId_0_percentage\"]")
+     WebElement pere1;
+        public void PercentageE1() 
+         {
+          pere1.sendKeys(Keys.CONTROL+"a");
+          pere1.sendKeys("25");
+	     }
+
+ @FindBy(xpath="//input[@id=\"basic_vendorPayoutSettingsUsingId_1_percentage\"]")
+     WebElement pere2;
+        public void PercentageE2() 
+         {
+          pere2.sendKeys(Keys.CONTROL+"a");
+          pera2.sendKeys("75");
+         }
+ @FindBy(xpath="//input[@id=\"basic_vendorPayoutSettingsUsingId_0_percentage\"]")
+     WebElement perd1;
+        public void PercentageD1() 
+         {
+          perd1.sendKeys(Keys.CONTROL+"a");
+          perd1.sendKeys("100");
+	     }
+         
+         
+         
+   @FindBy(xpath="//button[@style=\"margin-bottom: 26px;\"]")
+       WebElement del;
+          public void Delete()
+           {
+        	del.click();
+		   }
+}

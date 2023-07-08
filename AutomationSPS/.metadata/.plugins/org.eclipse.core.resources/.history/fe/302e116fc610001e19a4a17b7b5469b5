@@ -1,0 +1,118 @@
+package MainSiteSubscriptionSettings;
+
+import java.io.IOException;
+import org.openqa.selenium.support.PageFactory;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+import LoginPage.LoginPage;
+import MainSiteSubscriptionSettingsFun.FormFieldsFun;
+import Pages.UserProfilePage;
+import Utils.TestUtils;
+import Utils.Utilities;
+
+public class FormFields extends FormFieldsFun 
+ {
+  public FormFields() throws IOException
+   {
+    super();
+    PageFactory.initElements(driver,this);
+	}
+  LoginPage loginPage;
+  UserProfilePage userpropage;
+  TestUtils utils;
+  Utilities utilize;
+  public int DataSet = -1;
+	 @BeforeMethod
+	  public void setUp() throws IOException, InterruptedException 
+	   {
+	    openBrowser();
+	    loginPage = new LoginPage();
+	    utils = new TestUtils();
+	    utilize = new Utilities();
+	   }
+  @Test(priority=1)
+   public void FormFieldsAdd() throws InterruptedException, IOException
+    {
+	 loginPage.login(prop.getProperty("username"), prop.getProperty("password"));
+	 Thread.sleep(3000);
+	 FormFieldsFun sub=new FormFieldsFun();
+	 Thread.sleep(2000);
+	 sub.Extendbutton();
+	 Thread.sleep(2000);
+	 sub.sitebutton();
+	 Thread.sleep(2000);
+	 sub.SearchMainSite();
+	 Thread.sleep(2000);
+	 sub.EditButton();
+	 Thread.sleep(2000);
+	 sub.SubscriptionSettingsButton();
+	 Thread.sleep(4000);
+	 sub.AddFormFieldButton();
+	 Thread.sleep(2000);
+	 sub.FieldNameA1();
+	 Thread.sleep(2000);
+	 sub.FileTypeA1();
+	 Thread.sleep(2000);
+	 sub.AddFormFieldButton();
+	 Thread.sleep(1000);
+	 sub.FieldNameA2();
+	 Thread.sleep(4000);
+	 sub.FileTypeA2();
+	 Thread.sleep(2000);
+	 sub.SaveButton();
+	 Thread.sleep(2000);
+	 sub.Message();
+    }
+  @Test(priority=2)
+  public void FormFieldsEdit() throws InterruptedException, IOException
+   {
+	 loginPage.login(prop.getProperty("username"), prop.getProperty("password"));
+	 Thread.sleep(3000);
+	 FormFieldsFun sub=new FormFieldsFun();
+	 Thread.sleep(2000);
+	 sub.Extendbutton();
+	 Thread.sleep(2000);
+	 sub.sitebutton();
+	 Thread.sleep(2000);
+	 sub.SearchMainSite();
+	 Thread.sleep(2000);
+	 sub.EditButton();
+	 Thread.sleep(2000);
+	 sub.SubscriptionSettingsButton();
+	 Thread.sleep(2000);
+	 sub.FieldNameE1();
+	 Thread.sleep(2000);
+	 sub.FileTypeE1();
+	 /*Thread.sleep(2000);
+	 sub.FieldNameE2();
+	 Thread.sleep(2000);
+	 sub.FileTypeE2();*/
+	 Thread.sleep(2000);
+	 sub.SaveButton();
+	 Thread.sleep(2000);
+	 sub.Message();
+   }
+  @Test(priority=3)
+  public void FormFieldsDelete() throws InterruptedException, IOException
+   {
+	 loginPage.login(prop.getProperty("username"), prop.getProperty("password"));
+	 Thread.sleep(3000);
+	 FormFieldsFun sub=new FormFieldsFun();
+	 Thread.sleep(2000);
+	 sub.Extendbutton();
+	 Thread.sleep(2000);
+	 sub.sitebutton();
+	 Thread.sleep(2000);
+	 sub.SearchMainSite();
+	 Thread.sleep(2000);
+	 sub.EditButton();
+	 Thread.sleep(2000);
+	 sub.SubscriptionSettingsButton();
+	 Thread.sleep(2000);
+	 sub.Delete();
+	 sub.SaveButton();
+	 Thread.sleep(2000);
+	 sub.Message();
+	}
+
+ }

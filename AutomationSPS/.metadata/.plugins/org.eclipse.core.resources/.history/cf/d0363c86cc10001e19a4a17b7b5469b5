@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="SPS1">
+
+<listeners>
+	<listener class-name = "Sps.Report.Reporting"/>
+</listeners>
+                  
+<test name="Test Cases">
+<parameter name = "browser" value = "chrome" /> 
+    <classes>
+               
+             <class name="Login.TestCases.Validloginlogout"/>
+             
+          <!--  <class name="ChildSite.TestCases.AddMainSite"/>
+          <class name="SubSite.SubSiteBasic"/>
+      <class name="ChildSite.TestCases.MainSitePayments"/>
+      <class name="MainSiteSubscriptionSettings.FormFields"/>
+      <class name="MainSiteSubscriptionSettings.ApprovalUsers"/>
+      <class name="MainSiteSubscriptionSettings.AccessDeviceTypes"/>
+      <class name="MainSiteSubscriptionSettings.Payments"/>
+      <class name="MainSiteSubscriptionSettings.MembershipType"/>
+      <class name="MainSiteEnforcementManagement.Enforcement"/>
+      <class name="MainSiteEnforcementManagement.EnforcementUser"/>
+                 
+      <class name="SubSite.SubSiteBasic"/>
+      <class name="SubSite.FloorPlan"/>
+      <class name="SubSite.Gates"/>
+      <class name="SubSite.Devices"/>
+      <class name="SubSite.SubSiteWorkingHours"/>
+      <class name="SubSite.SubSiteOtherService"/>
+      <class name="SubSite.DeviceManagementPGS"/>
+      <class name="SubSite.DeviceManagementHandheldDevice"/>
+      <class name="SubSite.DeviceManagementKiosk"/>
+      <class name="SubSite.DeviceManagementEntryTerminal"/>
+      <class name="SubSite.DeviceManagementExitTerminal"/>
+      <class name="SubSite.Payment"/>
+                     
+      <class name="Reports.OnDemand"/>
+      <class name="Reports.Scheduled"/>
+                     
+      <class name="Accounts.Accounts"/>
+      
+      <class name="Customer.Customer"/>
+                           
+      <class name="Vehicle.Vehicle"/>
+       
+      <class name="Promotion.Promotion"/>
+                   
+      <class name="SubscriptionPlan.SubscriptionPlan"/>
+                     
+      <class name="EnfTicResPayInv.EnfTicResPayInv"/>
+                       
+      <class name="UserManagement.UserManagement"/>
+                       
+      <class name="SystemSettings.DeviceTypes"/>
+      <class name="SystemSettings.EnforcementTypes"/>
+      <class name="SystemSettings.FloorTypes"/>
+      <class name="SystemSettings.GateTypes"/>
+      <class name="SystemSettings.LoyalityProgram"/>
+      <class name="SystemSettings.OtherConfiguration"/>
+      <class name="SystemSettings.OtherServices"/>
+      <class name="SystemSettings.PaymentTypes"/>
+      <class name="SystemSettings.ServiceTypes"/>
+      <class name="SystemSettings.SmsProvider"/>
+      <class name="SystemSettings.VasSubTypes"/>
+      <class name="SystemSettings.VehicleFuelType"/>
+      <class name="SystemSettings.VehicleTypes"/>
+      <class name="SystemSettings.Vendor"/>-->                            
+              
+              
+              
+              
+              <!-- 
+               <class name="com.fms.testCases.ProfilePageTest"/>-->
+                  
+             </classes>
+  </test>
+</suite>

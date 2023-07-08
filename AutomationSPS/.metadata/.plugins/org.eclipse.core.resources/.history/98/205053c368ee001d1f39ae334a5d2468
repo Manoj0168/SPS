@@ -1,0 +1,612 @@
+package SubSiteFun;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import Base.BasePage;
+
+public class DeviceManagementPGSFun extends BasePage
+ {
+  public DeviceManagementPGSFun() throws IOException 
+   {
+	super();
+    PageFactory.initElements(driver,this);
+	}
+  
+  
+  File FileLocation;
+  FileInputStream FileName;
+  XSSFWorkbook Work;
+  XSSFSheet sheet;
+  @FindBy(xpath="//div[@class=\"ant-pro-sider-links\"]")
+  WebElement more;
+     public void Extendbutton()
+      {
+	      more.click();
+      }
+@FindBy(xpath="//span[contains(.,'Successfully')]")
+  WebElement msg;
+     public void Message() throws IOException
+      {
+       String ms=msg.getText();
+       System.out.println(ms);
+      }
+@FindBy(xpath="//span[.='Sites']")
+  WebElement site;
+     public void sitebutton()
+     {
+      site.click();
+     }
+  @FindBy(xpath="//input[@type=\"text\"]")
+      WebElement ser;
+         public void SearchMainSite()
+          {
+   	       try
+   	        {
+   	         FileLocation=new File("./Data/Site.xlsx");
+             FileName=new FileInputStream(FileLocation);
+             Work = new XSSFWorkbook(FileName);
+             sheet=Work.getSheetAt(0);
+             String data=sheet.getRow(0).getCell(1).getStringCellValue();
+  	         ser.sendKeys(data);
+   	        }
+   	       catch(Exception e) 
+   	        {
+		     System.out.println(e.getMessage());
+		     System.out.println(e.getCause());
+		     e.printStackTrace();
+		    }
+          }
+  @FindBy(xpath="//span[@aria-label=\"edit\"]")
+      WebElement edi;
+         public void EditButton()
+          {
+   	       edi.click();
+	      }
+  @FindBy(xpath="(//div[@role=\"tab\"])[2]")
+      WebElement subsite;
+         public void SubSiteButton()
+          {
+   	       subsite.click();
+	      }
+         @FindBy(xpath="(//div[.='FloorPlan'])[2]")
+         WebElement fp;
+            public void FloorPlanButton()
+             {
+          	fp.click();
+			   }
+     @FindBy(xpath="//span[.='Add New Floor']")
+         WebElement addnewfp;
+            public void AddNewFloorPlan()
+             {
+          	addnewfp.click();
+			   }
+    @FindBy(xpath="//input[@id=\"application-form_floorId\"]")
+        WebElement selfloor;
+           public void SelectFloorA()
+           {
+			  try
+             {
+              FileLocation=new File("./Data/Site.xlsx");
+              FileName=new FileInputStream(FileLocation);
+              Work = new XSSFWorkbook(FileName);
+              sheet=Work.getSheetAt(2);
+              String data=sheet.getRow(1).getCell(0).getStringCellValue();
+              selfloor.sendKeys(data);
+              Thread.sleep(2000);
+              selfloor.sendKeys(Keys.ENTER);
+             }
+            catch(Exception e) 
+             {
+              System.out.println(e.getMessage());
+              System.out.println(e.getCause());
+              e.printStackTrace();
+             } 
+           }   
+    @FindBy(xpath="//input[@id=\"application-form_totalSpace\"]")
+        WebElement slots;
+           public void TotalSpaceFloorPlanA()
+            {
+ 			   try
+                {
+                 FileLocation=new File("./Data/Site.xlsx");
+                 FileName=new FileInputStream(FileLocation);
+                 Work = new XSSFWorkbook(FileName);
+                 sheet=Work.getSheetAt(2);
+                 String data=sheet.getRow(1).getCell(1).toString();
+                 slots.sendKeys(data);
+                 slots.sendKeys(Keys.BACK_SPACE);
+                 Thread.sleep(1000);
+                 slots.sendKeys(Keys.BACK_SPACE);
+                }
+               catch(Exception e) 
+                {
+                 System.out.println(e.getMessage());
+                 System.out.println(e.getCause());
+                 e.printStackTrace();
+                } 
+              }	
+    @FindBy(xpath="(//input[@class=\"ant-input-number-input\"])[3]")
+        WebElement longifpa;
+              public void LongitudeFPA()
+               {
+                try
+                 {
+                  FileLocation=new File("./Data/Site.xlsx");
+                  FileName=new FileInputStream(FileLocation);
+                  Work = new XSSFWorkbook(FileName);
+                  sheet=Work.getSheetAt(2);
+                  String data=sheet.getRow(1).getCell(2).toString();
+                  longifpa.sendKeys(data);
+                 }
+                catch(Exception e) 
+                 {
+                  System.out.println(e.getMessage());
+                  System.out.println(e.getCause());
+                  e.printStackTrace();
+                 }
+           	}
+    @FindBy(xpath="(//input[@class=\"ant-input-number-input\"])[4]")
+        WebElement latfpa;
+           public void LatitudeFPA()
+            {
+             try
+              {
+               FileLocation=new File("./Data/Site.xlsx");
+               FileName=new FileInputStream(FileLocation);
+               Work = new XSSFWorkbook(FileName);
+               sheet=Work.getSheetAt(2);
+               String data=sheet.getRow(1).getCell(3).toString();
+               latfpa.sendKeys(data);
+               driver.findElement(By.xpath("(//span[@aria-label=\"environment\"])[2]")).click();
+               Thread.sleep(2000);
+               driver.findElement(By.xpath("//button[.='Ok']")).click();
+              }
+             catch(Exception e) 
+              {
+               System.out.println(e.getMessage());
+               System.out.println(e.getCause());
+               e.printStackTrace();
+              }
+            }
+    public void ParkingServiceAddonScriptionFloorPlanA() throws InterruptedException
+     {
+      WebElement ParkingService=driver.findElement(By.xpath("//div[@class=\"ant-select ant-select-in-form-item ant-select-multiple ant-select-allow-clear ant-select-show-search\"]"));
+      JavascriptExecutor js=(JavascriptExecutor)driver;
+      js.executeScript("arguments[0].scrollIntoView();",ParkingService);
+      ParkingService.click();
+      Thread.sleep(2000);
+      driver.findElement(By.xpath("//div[@class=\"ant-select-item-option-content\" and .='Add-ons']")).click();
+      Thread.sleep(2000);
+      driver.findElement(By.xpath("//div[@class=\"ant-select-item-option-content\" and .='Subscription']")).click(); 
+     }
+    @FindBy(xpath="(//button[.='Save'])[3]")
+        WebElement savefl;
+           public void SaveFloorPlanButton()
+            {
+    	       savefl.click();
+         	}
+  //Add PGS
+  @FindBy(xpath="(//div[.='Device Management'])[1]")
+      WebElement dm;
+         public void DeviceManagementButton()
+          {
+           dm.click();
+     	  }
+  @FindBy(xpath="(//span[@aria-label=\"plus\"])[3]")
+      WebElement add;
+         public void AddButton()
+          {
+           add.click();
+		  }
+  @FindBy(xpath="//div[@class=\"ant-select ant-select-in-form-item ant-select-single ant-select-show-arrow\"]")
+      WebElement seldev;
+         public void SelectDevice()
+          {
+           seldev.click();
+           driver.findElement(By.xpath("(//div[.='PGS'])[1]")).click();
+          }
+   @FindBy(xpath="//div[@class=\"ant-select ant-select-in-form-item ant-select-single ant-select-allow-clear ant-select-show-arrow\"]")
+       WebElement floo;
+          public void Floor()
+           {
+        	floo.click();
+        	driver.findElement(By.xpath("//div[@class=\"ant-select-item-option-content\"]")).click();
+           }
+   @FindBy(xpath="//input[@id=\"basic_terminalManufacturer\"]")
+       WebElement mana;
+          public void ManufacturerA()
+           {
+            try
+             {
+              FileLocation=new File("./Data/Site.xlsx");
+              FileName=new FileInputStream(FileLocation);
+              Work = new XSSFWorkbook(FileName);
+              sheet=Work.getSheet("DeviceManagementPGS");
+              String data=sheet.getRow(1).getCell(0).toString();
+              mana.sendKeys(data);
+             }
+            catch(Exception e) 
+             {
+              System.out.println(e.getMessage());
+              System.out.println(e.getCause());
+              e.printStackTrace();
+             }
+           }
+   @FindBy(xpath="//input[@id=\"basic_terminalModel\"]")
+       WebElement moda;
+          public void ModelA()
+           {
+            try
+             {
+              FileLocation=new File("./Data/Site.xlsx");
+              FileName=new FileInputStream(FileLocation);
+              Work = new XSSFWorkbook(FileName);
+              sheet=Work.getSheet("DeviceManagementPGS");
+              String data=sheet.getRow(1).getCell(1).toString();
+              moda.sendKeys(data);
+             }
+            catch(Exception e) 
+             {
+              System.out.println(e.getMessage());
+              System.out.println(e.getCause());
+              e.printStackTrace();
+             }
+           }
+   @FindBy(xpath="//input[@id=\"basic_terminalIpAddress\"]")
+       WebElement ipa;
+          public void IPAddressA()
+           {
+            try
+             {
+              FileLocation=new File("./Data/Site.xlsx");
+              FileName=new FileInputStream(FileLocation);
+              Work = new XSSFWorkbook(FileName);
+              sheet=Work.getSheet("DeviceManagementPGS");
+              String data=sheet.getRow(1).getCell(2).toString();
+              ipa.sendKeys(data);
+             }
+            catch(Exception e) 
+             {
+              System.out.println(e.getMessage());
+              System.out.println(e.getCause());
+              e.printStackTrace();
+              }
+            }
+   @FindBy(xpath="//input[@id=\"basic_terminalPort\"]")
+       WebElement porta;
+          public void PortA()
+           {
+            try
+             {
+              FileLocation=new File("./Data/Site.xlsx");
+              FileName=new FileInputStream(FileLocation);
+              Work = new XSSFWorkbook(FileName);
+              sheet=Work.getSheet("DeviceManagementPGS");
+              String data=sheet.getRow(1).getCell(3).toString();
+              porta.sendKeys(data);
+              porta.sendKeys(Keys.BACK_SPACE);
+              porta.sendKeys(Keys.BACK_SPACE);
+             }
+            catch(Exception e) 
+             {
+              System.out.println(e.getMessage());
+              System.out.println(e.getCause());
+              e.printStackTrace();
+             }
+            }
+   @FindBy(xpath="//input[@id=\"basic_terminalKey\"]")
+       WebElement auta;
+          public void AuthKeyA()
+           {
+            try
+             {
+              FileLocation=new File("./Data/Site.xlsx");
+              FileName=new FileInputStream(FileLocation);
+              Work = new XSSFWorkbook(FileName);
+              sheet=Work.getSheet("DeviceManagementPGS");
+              String data=sheet.getRow(1).getCell(4).toString();
+              auta.sendKeys(data);
+             }
+            catch(Exception e) 
+             {
+              System.out.println(e.getMessage());
+              System.out.println(e.getCause());
+              e.printStackTrace();
+             }
+            }
+   @FindBy(xpath="//input[@id=\"basic_groupId\"]")
+       WebElement groa;
+          public void GroupIDA()
+           {
+            try
+             {
+              FileLocation=new File("./Data/Site.xlsx");
+              FileName=new FileInputStream(FileLocation);
+              Work = new XSSFWorkbook(FileName);
+              sheet=Work.getSheet("DeviceManagementPGS");
+              String data=sheet.getRow(1).getCell(5).toString();
+              groa.sendKeys(data);
+              groa.sendKeys(Keys.BACK_SPACE);
+              groa.sendKeys(Keys.BACK_SPACE);
+             }
+            catch(Exception e) 
+             {
+              System.out.println(e.getMessage());
+              System.out.println(e.getCause());
+              e.printStackTrace();
+             }
+           }
+   @FindBy(xpath="//input[@id=\"basic_noOfConcentrator\"]")
+       WebElement nooca;
+          public void NoOfConcentratorA()
+           {
+            try
+             {
+              FileLocation=new File("./Data/Site.xlsx");
+              FileName=new FileInputStream(FileLocation);
+              Work = new XSSFWorkbook(FileName);
+              sheet=Work.getSheet("DeviceManagementPGS");
+              String data=sheet.getRow(1).getCell(6).toString();
+              nooca.sendKeys(data);
+              nooca.sendKeys(Keys.BACK_SPACE);
+              nooca.sendKeys(Keys.BACK_SPACE);
+             }
+            catch(Exception e) 
+             {
+              System.out.println(e.getMessage());
+              System.out.println(e.getCause());
+              e.printStackTrace();
+             }
+           }
+   @FindBy(xpath="//input[@id=\"basic_noOfSensors\"]")
+       WebElement noosa;
+          public void NoOfSensorsA()
+           {
+            try
+             {
+              FileLocation=new File("./Data/Site.xlsx");
+              FileName=new FileInputStream(FileLocation);
+              Work = new XSSFWorkbook(FileName);
+              sheet=Work.getSheet("DeviceManagementPGS");
+              String data=sheet.getRow(1).getCell(7).toString();
+              noosa.sendKeys(data);
+              noosa.sendKeys(Keys.BACK_SPACE);
+              noosa.sendKeys(Keys.BACK_SPACE);
+             }
+            catch(Exception e) 
+             {
+              System.out.println(e.getMessage());
+              System.out.println(e.getCause());
+              e.printStackTrace();
+             }
+           }
+   @FindBy(xpath="//button[@type=\"submit\"]")
+       WebElement sub;
+          public void Submit()
+           {
+            sub.click();
+       	   }
+   @FindBy(xpath="(//span[@aria-label=\"edit\"])[1]")
+       WebElement edt;
+          public void EditButtonPGS()
+           {
+            edt.click();
+           }
+       
+          
+          
+          
+   @FindBy(xpath="//input[@id=\"basic_terminalManufacturer\"]")
+       WebElement mane;
+          public void ManufacturerE()
+           {
+            try
+             {
+              FileLocation=new File("./Data/Site.xlsx");
+              FileName=new FileInputStream(FileLocation);
+              Work = new XSSFWorkbook(FileName);
+              sheet=Work.getSheet("DeviceManagementPGS");
+              String data=sheet.getRow(2).getCell(0).toString();
+              mane.sendKeys(Keys.CONTROL+"a");
+              mane.sendKeys(data);
+             }
+            catch(Exception e) 
+             {
+              System.out.println(e.getMessage());
+              System.out.println(e.getCause());
+              e.printStackTrace();
+             }
+            }
+   @FindBy(xpath="//input[@id=\"basic_terminalModel\"]")
+       WebElement mode;
+          public void ModelE()
+           {
+            try
+             {
+              FileLocation=new File("./Data/Site.xlsx");
+              FileName=new FileInputStream(FileLocation);
+              Work = new XSSFWorkbook(FileName);
+              sheet=Work.getSheet("DeviceManagementPGS");
+              String data=sheet.getRow(2).getCell(1).toString();
+              mode.sendKeys(Keys.CONTROL+"a");
+              mode.sendKeys(data);
+             }
+            catch(Exception e) 
+             {
+              System.out.println(e.getMessage());
+              System.out.println(e.getCause());
+              e.printStackTrace();
+             }
+            }
+   @FindBy(xpath="//input[@id=\"basic_terminalIpAddress\"]")
+       WebElement ipe;
+          public void IPAddressE()
+           {
+            try
+             {
+              FileLocation=new File("./Data/Site.xlsx");
+              FileName=new FileInputStream(FileLocation);
+              Work = new XSSFWorkbook(FileName);
+              sheet=Work.getSheet("DeviceManagementPGS");
+              String data=sheet.getRow(2).getCell(2).toString();
+              ipe.sendKeys(Keys.CONTROL+"a");
+              ipe.sendKeys(data);
+             }
+            catch(Exception e) 
+             {
+              System.out.println(e.getMessage());
+              System.out.println(e.getCause());
+              e.printStackTrace();
+             }
+           }
+   @FindBy(xpath="//input[@id=\"basic_terminalPort\"]")
+       WebElement porte;
+          public void PortE()
+           {
+            try
+             {
+              FileLocation=new File("./Data/Site.xlsx");
+              FileName=new FileInputStream(FileLocation);
+              Work = new XSSFWorkbook(FileName);
+              sheet=Work.getSheet("DeviceManagementPGS");
+              String data=sheet.getRow(2).getCell(3).toString();
+              porte.sendKeys(Keys.CONTROL+"a");
+              porte.sendKeys(data);
+              porte.sendKeys(Keys.BACK_SPACE);
+              porte.sendKeys(Keys.BACK_SPACE);
+             }
+            catch(Exception e) 
+             {
+              System.out.println(e.getMessage());
+              System.out.println(e.getCause());
+              e.printStackTrace();
+             }
+           }
+   @FindBy(xpath="//input[@id=\"basic_terminalKey\"]")
+       WebElement aute;
+          public void AuthKeyE()
+           {
+            try
+             {
+              FileLocation=new File("./Data/Site.xlsx");
+              FileName=new FileInputStream(FileLocation);
+              Work = new XSSFWorkbook(FileName);
+              sheet=Work.getSheet("DeviceManagementPGS");
+              String data=sheet.getRow(2).getCell(4).toString();
+              aute.sendKeys(Keys.CONTROL+"a");
+              aute.sendKeys(data);
+             }
+            catch(Exception e) 
+             {
+              System.out.println(e.getMessage());
+              System.out.println(e.getCause());
+              e.printStackTrace();
+             }
+           }
+   @FindBy(xpath="//input[@id=\"basic_groupId\"]")
+       WebElement groe;
+          public void GroupIDE()
+           {
+            try
+             {
+              FileLocation=new File("./Data/Site.xlsx");
+              FileName=new FileInputStream(FileLocation);
+              Work = new XSSFWorkbook(FileName);
+              sheet=Work.getSheet("DeviceManagementPGS");
+              String data=sheet.getRow(2).getCell(5).toString();
+              groe.sendKeys(Keys.CONTROL+"a");  
+              groe.sendKeys(data);
+              groe.sendKeys(Keys.BACK_SPACE);
+              groe.sendKeys(Keys.BACK_SPACE);
+             }
+            catch(Exception e) 
+             {
+              System.out.println(e.getMessage());
+              System.out.println(e.getCause());
+              e.printStackTrace();
+             }
+           }
+   @FindBy(xpath="//input[@id=\"basic_noOfConcentrator\"]")
+       WebElement nooce;
+          public void NoOfConcentratorE()
+           {
+            try
+             {
+              FileLocation=new File("./Data/Site.xlsx");
+              FileName=new FileInputStream(FileLocation);
+              Work = new XSSFWorkbook(FileName);
+              sheet=Work.getSheet("DeviceManagementPGS");
+              String data=sheet.getRow(2).getCell(6).toString();
+              nooce.sendKeys(Keys.CONTROL+"a");   
+              nooce.sendKeys(data);
+              nooce.sendKeys(Keys.BACK_SPACE);
+              nooce.sendKeys(Keys.BACK_SPACE);
+             }
+            catch(Exception e) 
+             {
+              System.out.println(e.getMessage());
+              System.out.println(e.getCause());
+              e.printStackTrace();
+             }
+           }
+   @FindBy(xpath="//input[@id=\"basic_noOfSensors\"]")
+       WebElement noose;
+          public void NoOfSensorsE()
+           {
+            try
+             {
+              FileLocation=new File("./Data/Site.xlsx");
+              FileName=new FileInputStream(FileLocation);
+              Work = new XSSFWorkbook(FileName);
+              sheet=Work.getSheet("DeviceManagementPGS");
+              String data=sheet.getRow(2).getCell(7).toString();
+              noose.sendKeys(Keys.CONTROL+"a");  
+              noose.sendKeys(data);
+              noose.sendKeys(Keys.BACK_SPACE);
+              noose.sendKeys(Keys.BACK_SPACE);
+             }
+            catch(Exception e) 
+             {
+              System.out.println(e.getMessage());
+              System.out.println(e.getCause());
+              e.printStackTrace();
+             }
+           }
+   @FindBy(xpath="(//div[@class=\"ant-switch-handle\"])[4]")
+       WebElement actdeact;
+          public void ActivateAndDeactivate()
+           {
+            actdeact.click();
+       	   }
+   @FindBy(xpath="(//span[@aria-label=\"delete\"])[1]")
+       WebElement del;
+          public void DeleteButton()
+           {
+            del.click();
+           }
+   @FindBy(xpath="//input[@id=\"delete-form_confirm\"]")
+       WebElement detf;
+          public void DeleteTF() throws InterruptedException
+           {
+            WebElement DeleteData = driver.findElement(By.tagName("code"));
+            String de=DeleteData.getText();
+            Thread.sleep(2000);
+            detf.sendKeys(de);
+           }
+    @FindBy(xpath="//button[@type=\"submit\"]")
+        WebElement dele;
+           public void DeleteButtonSub()
+            {
+             dele.click();
+            }
+
+}

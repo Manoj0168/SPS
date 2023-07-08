@@ -1,0 +1,131 @@
+package Base;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Properties;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeSuite;
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.reporter.ExtentSparkReporter;
+import com.aventstack.extentreports.reporter.configuration.Theme;
+
+public class BasePage {
+	
+	public static WebDriver driver;
+	public static Properties prop;	
+	public static ExtentTest test;
+	public static ExtentSparkReporter reporter;
+	public static ExtentReports extent;
+	
+	
+	@BeforeSuite
+	public void setUpReport() {
+		String date= new SimpleDateFormat("dd-MM-yyyy").format(new Date());
+		String time= new SimpleDateFormat("hh-mm-ss-").format(new Date());
+		reporter = new ExtentSparkReporter(System.getProperty("user.dir")+"/Reports/"+date+"/"+time+"index.html");
+		extent = new ExtentReports();
+		reporter.config().setTheme(Theme.DARK);
+		reporter.config().setDocumentTitle("Automation Report");
+		reporter.config().setReportName("4S-Extent Report");
+		extent.attachReporter(reporter);
+	}
+	
+	public BasePage() throws IOException {
+		
+		prop = new Properties();
+		
+		FileInputStream ip = new FileInputStream("D:\\AutomationSPS\\automated-tests-Manoj\\Property\\property");
+		prop.load(ip);
+	}
+
+	public static void openBrowser() throws InterruptedException {
+		String browserName = prop.getProperty("browser");
+		Thread.sleep(4000);
+		
+		System.out.println("Browser is --" +browserName);
+		if(browserName.equalsIgnoreCase("FF")) {
+			System.setProperty("webdriver.gecko.driver", prop.getProperty("firefoxDriverPath"));
+			driver = new FirefoxDriver();
+			
+			DesiredCapabilities caps = new DesiredCapabilities();
+			caps.setCapability("os", "Windows");
+			caps.setCapability("os_version", "10");
+			caps.setCapability("browser", "Firefox");
+			caps.setCapability("browser_version", "91.0");
+			caps.setCapability("name", "RINA");
+		}else
+		if(browserName.equalsIgnoreCase("chrome")) {
+			System.setProperty("webdriver.chrome.driver", prop.getProperty("chromeDriverPath"));
+			ChromeOptions options = new ChromeOptions();
+			options.addArguments("--remote-allow-origins=*");
+			driver = new ChromeDriver(options);
+			
+			DesiredCapabilities caps = new DesiredCapabilities();
+			caps.setCapability("os", "Windows");
+			caps.setCapability("os_version", "10");
+			caps.setCapability("browser", "Chrome");
+			caps.setCapability("browser_version", "103.0.5060.114");
+			caps.setCapability("name", "RINA");
+			
+		}
+		
+		
+		else if(browserName.equalsIgnoreCase("edge")) {
+			System.setProperty("webdriver.edge.driver", prop.getProperty("edgeDriverPath"));
+			driver = new EdgeDriver();
+			
+			DesiredCapabilities caps = new DesiredCapabilities();
+			caps.setCapability("os", "Windows");
+			caps.setCapability("os_version", "10");
+			caps.setCapability("browser", "Edge");
+			caps.setCapability("browser_version", "91.0");
+			caps.setCapability("name", "RINA");
+		}
+		
+		driver.manage().window().maximize();
+		driver.manage().deleteAllCookies();
+	
+		driver.get(prop.getProperty("url"));
+		Thread.sleep(5000);
+	
+
+		
+	}
+	
+	/*@AfterMethod
+	public void closeApplication(ITestResult res) {
+		String TestName = res.getName();
+		//System.out.println("Testcase name is "+TestName);
+		// System.out.println("test case status is "+res.getStatus());
+		if (ITestResult.FAILURE==res.getStatus()) {
+			test.fail(MediaEntityBuilder.createScreenCaptureFromPath(new ScreenshotTest().capture(driver, TestName)).build());
+		}
+		// driver.quit();
+	}*/
+
+	/*@AfterSuite
+	public void close() {
+		extent.setSystemInfo("windows", "10");
+		test.assignAuthor("Rina");
+		test.assignCategory("Web Automation");
+		test.assignDevice("Laptop");
+		extent.flush();
+	}*/
+	
+	
+	@AfterMethod
+	public Void tearDown() {
+		driver.quit();
+		return null;
+	}
+	
+}

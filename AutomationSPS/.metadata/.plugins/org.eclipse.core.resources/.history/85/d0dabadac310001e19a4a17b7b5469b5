@@ -1,0 +1,75 @@
+package SystemSettings;
+
+import java.io.IOException;
+import javax.swing.text.Utilities;
+import org.openqa.selenium.support.PageFactory;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+import LoginPage.LoginPage;
+import Pages.UserProfilePage;
+import SystemSettingsFun.VendorFun;
+import Utils.TestUtils;
+
+public class Vendor extends VendorFun
+ {
+  LoginPage loginPage;
+  UserProfilePage userpropage;
+  TestUtils utils;
+  Utilities utilize;
+  public Vendor() throws IOException 
+   {
+    super();
+	PageFactory.initElements(driver, this);
+   }
+  public int DataSet = -1;
+   @BeforeMethod
+	 public void setUp() throws IOException, InterruptedException 
+	  {
+	   openBrowser();
+	   loginPage = new LoginPage();
+	   utils=new TestUtils();
+	   utilize= new Utilities();
+	  }
+   @Test(priority=1)
+	public void VendorActivateAndDeactivate() throws InterruptedException, IOException
+	 {
+	  loginPage.login(prop.getProperty("username"), prop.getProperty("password"));
+	  VendorFun ven=new VendorFun();
+	  Thread.sleep(2000);
+	  ven.Extendbutton();
+	  Thread.sleep(2000);
+	  ven.systemsettingBut();
+	  Thread.sleep(2000);
+	  ven.VendorButton();
+	  Thread.sleep(2000);
+	  ven.ActivateAndDeactivate();
+	  Thread.sleep(1000);
+	  ven.Message();
+	  Thread.sleep(2000);
+	  ven.ActivateAndDeactivate();
+	  Thread.sleep(1000);
+	  ven.Message();
+	  
+	  }
+   @Test(priority=2)
+	public void DeleteVendor() throws InterruptedException, IOException
+	 {
+	  loginPage.login(prop.getProperty("username"), prop.getProperty("password"));
+	  VendorFun ven=new VendorFun();
+	  Thread.sleep(2000);
+	  ven.Extendbutton();
+	  Thread.sleep(2000);
+	  ven.systemsettingBut();
+	  Thread.sleep(2000);
+	  ven.VendorButton();
+	  Thread.sleep(2000);
+	  ven.DeleteButton();
+	  Thread.sleep(2000);
+	  ven.DeleteTF();
+	  ven.DeleteButtonSub();
+	  Thread.sleep(1000);
+	  ven.Message();
+	 }
+   
+   
+ }

@@ -1,0 +1,124 @@
+package SubSite;
+
+import java.io.IOException;
+import org.openqa.selenium.support.PageFactory;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+import LoginPage.LoginPage;
+import Pages.UserProfilePage;
+import SubSiteFun.GatesFun;
+import Utils.TestUtils;
+import Utils.Utilities;
+
+public class Gates extends GatesFun
+ {
+  public Gates() throws IOException 
+   {
+	super();
+    PageFactory.initElements(driver,this);
+   }
+  LoginPage loginPage;
+  UserProfilePage userpropage;
+  TestUtils utils;
+  Utilities utilize;
+  public int DataSet = -1;
+	 @BeforeMethod
+	  public void setUp() throws IOException, InterruptedException 
+	   {
+	    openBrowser();
+	    loginPage = new LoginPage();
+	    utils = new TestUtils();
+	    utilize = new Utilities();
+	   }
+	 @Test(priority=1)
+	   public void SubSiteGatesAdd() throws InterruptedException, IOException
+	     {
+		  loginPage.login(prop.getProperty("username"), prop.getProperty("password"));
+		  Thread.sleep(3000);
+		  GatesFun sub=new GatesFun();
+		  Thread.sleep(2000);
+		  sub.Extendbutton();
+		  Thread.sleep(2000);
+		  sub.sitebutton();
+		  Thread.sleep(2000);
+		  sub.SearchMainSite();
+		  Thread.sleep(1000);
+		  sub.EditButton();
+		  sub.SubSiteButton();
+		  Thread.sleep(4000);
+		  sub.GateButton();
+		  sub.AddNewGate();
+		  sub.GateNameAE();
+		  sub.GateNameAA();
+		  sub.GateDescriptionAE();
+		  sub.GateDescriptionAA();
+		  Thread.sleep(2000);
+		  sub.LongitudeGA();
+		  sub.LatitudeGA();
+		  Thread.sleep(2000);
+		  sub.GateTypeGA();
+		  sub.GateActivateDactivate();
+		  sub.AddGate();
+		  Thread.sleep(2000);
+		  sub.Message();
+		 }
+	 @Test(priority=2)
+	   public void SubSiteGatesEdit() throws InterruptedException, IOException
+	     {
+		  loginPage.login(prop.getProperty("username"), prop.getProperty("password"));
+		  Thread.sleep(3000);
+		  GatesFun sub=new GatesFun();
+		  Thread.sleep(2000);
+		  sub.Extendbutton();
+		  Thread.sleep(2000);
+		  sub.sitebutton();
+		  Thread.sleep(2000);
+		  sub.SearchMainSite();
+		  Thread.sleep(1000);
+		  sub.EditButton();
+		  sub.SubSiteButton();
+		  Thread.sleep(4000);
+		  sub.GateButton();
+		  Thread.sleep(2000);
+		  sub.EditGate();
+		  Thread.sleep(2000);
+		  sub.GateNameEE();
+		  sub.GateNameEA();
+		  sub.GateDescriptionEE();
+		  sub.GateDescriptionEA();
+		  Thread.sleep(2000);
+		  sub.LongitudeGE();
+		  sub.LatitudeGE();
+		  Thread.sleep(2000);
+		  sub.GateTypeGE();
+		  sub.GateActivateDactivate();
+		  /*sub.UpdateButton();
+		  Thread.sleep(2000);
+		  sub.Message();*/
+	     }
+	 /*@Test(priority=3)
+	   public void SubSiteGatesDelete() throws InterruptedException, IOException
+	     {
+		  loginPage.login(prop.getProperty("username"), prop.getProperty("password"));
+		  Thread.sleep(3000);
+		  GatesFun sub=new GatesFun();
+		  Thread.sleep(2000);
+		  sub.Extendbutton();
+		  Thread.sleep(2000);
+		  sub.sitebutton();
+		  Thread.sleep(2000);
+		  sub.SearchMainSite();
+		  Thread.sleep(1000);
+		  sub.EditButton();
+		  sub.SubSiteButton();
+		  Thread.sleep(4000);
+		  sub.GateButton();
+		  Thread.sleep(2000);
+		  sub.Delete();
+		  sub.DeleteTF();
+		  Thread.sleep(2000);
+		  sub.DeleteButtonSub();
+		  Thread.sleep(2000);
+		  sub.Message();
+	     }*/
+}

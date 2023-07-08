@@ -1,0 +1,569 @@
+package PromotionFun;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import Base.BasePage;
+
+
+public class ProFun extends BasePage
+ {
+  public ProFun() throws IOException 
+   { 
+	super();
+	PageFactory.initElements(driver, this);
+   }
+ @FindBy(xpath="//span[contains(.,'Successfully')]")
+     WebElement msg;
+        public void Message() throws IOException
+         {
+          String ms=msg.getText();
+          System.out.println(ms);
+         }
+ @FindBy(xpath="//div[@class=\"ant-pro-sider-links\"]")
+     WebElement more;
+       public void Extendbutton()
+       {
+ 	    more.click();
+       }
+ @FindBy(xpath="//span[.='Promotions']")
+     WebElement probut;
+        public void PromotionsButton()
+         {
+ 	      probut.click();
+		 }
+ @FindBy(xpath ="//span[@aria-label=\"plus\"]")
+     WebElement add;
+       public void AddButton()
+      {
+  	   add.click();
+		}   
+ File FileLocation;
+ FileInputStream FileName;
+ XSSFWorkbook Work;
+ XSSFSheet sheet;
+ @FindBy(xpath="(//span[@class=\"ant-tree-checkbox\"])[1]")
+     WebElement sitche;
+        public void SiteCheckBox() 
+         {
+          sitche.click();
+         }
+ @FindBy(xpath="//input[@id=\"general_name\"]")
+     WebElement namea;
+        public void NameAE()
+         {
+          try
+     	   {
+     	    FileLocation=new File("./Data/Promotion.xlsx");
+     	    FileName=new FileInputStream(FileLocation);
+     	    Work=new XSSFWorkbook(FileName);
+     	    sheet=Work.getSheetAt(0);
+     	    String data = sheet.getRow(1).getCell(0).getStringCellValue();
+     	    namea.sendKeys(data);
+     	   }
+     	  catch (Exception e)
+     	   {
+     		System.out.println(e.getMessage());
+     		System.out.println(e.getCause());
+     		e.printStackTrace();
+		   }
+        }	
+ @FindBy(xpath="//input[@id=\"general_nameAr\"]")
+     WebElement nameaa;
+        public void NameAA()
+         {
+          try
+           {
+        	FileLocation=new File("./Data/Promotion.xlsx");
+        	FileName=new FileInputStream(FileLocation);
+        	Work=new XSSFWorkbook(FileName);
+        	sheet=Work.getSheetAt(0);
+        	String data = sheet.getRow(1).getCell(1).getStringCellValue();
+        	nameaa.sendKeys(data);
+          }
+         catch (Exception e)
+          {
+           System.out.println(e.getMessage());
+           System.out.println(e.getCause());
+           e.printStackTrace();
+   		  }
+        }
+  @FindBy(xpath="//textarea[@id=\"general_description\"]")
+      WebElement disae;
+         public void DescriptionAE()
+          {
+           try
+            {
+           	 FileLocation=new File("./Data/Promotion.xlsx");
+           	 FileName=new FileInputStream(FileLocation);
+           	 Work=new XSSFWorkbook(FileName);
+           	 sheet=Work.getSheetAt(0);
+           	 String data = sheet.getRow(1).getCell(2).getStringCellValue();
+           	 disae.sendKeys(data);
+            }
+           catch (Exception e)
+            {
+             System.out.println(e.getMessage());
+             System.out.println(e.getCause());
+             e.printStackTrace();
+      		}
+         }
+  @FindBy(xpath="//textarea[@id=\"general_descriptionAr\"]")
+      WebElement disaa;
+         public void DescriptionAA()
+          {
+           try
+            {
+             FileLocation=new File("./Data/Promotion.xlsx");
+             FileName=new FileInputStream(FileLocation);
+             Work=new XSSFWorkbook(FileName);
+             sheet=Work.getSheetAt(0);
+             String data = sheet.getRow(1).getCell(3).getStringCellValue();
+             disaa.sendKeys(data);
+            }
+           catch (Exception e)
+            {
+             System.out.println(e.getMessage());
+             System.out.println(e.getCause());
+             e.printStackTrace();
+            }
+          }
+ public void ValueTypeA()
+  {
+   try
+   {
+    WebElement element = driver.findElement(By.xpath("//label[.='Value Type']/../following-sibling::div[1]/div[1]/div[1]/div[1]/div[1]"));
+    FileLocation=new File("./Data/Promotion.xlsx");
+    FileName=new FileInputStream(FileLocation);
+    Work=new XSSFWorkbook(FileName);
+    sheet=Work.getSheetAt(0);
+    String data=sheet.getRow(1).getCell(4).getStringCellValue();
+    JavascriptExecutor js = (JavascriptExecutor) driver;
+    js.executeScript("arguments[0].scrollIntoView();", element);
+    element.click();
+    String a="number";
+     if(data.equalsIgnoreCase(a))
+     {
+      driver.findElement(By.xpath("(//div[.='Number'])[2]")).click();
+     }
+    else 
+    {
+    	driver.findElement(By.xpath("(//div[.='Percent'])[2]")).click();	
+	}
+   }
+   catch (Exception e)
+   {
+    System.out.println(e.getMessage());
+    System.out.println(e.getCause());
+    e.printStackTrace();
+   }
+  }
+  @FindBy(xpath="//input[@id=\"general_value\"]")
+      WebElement vala;
+         public void ValueA()
+          {
+           try
+            {
+             FileLocation=new File("./Data/Promotion.xlsx");
+             FileName=new FileInputStream(FileLocation);
+             Work=new XSSFWorkbook(FileName);
+             sheet=Work.getSheetAt(0);
+             String data = sheet.getRow(1).getCell(5).toString();
+             vala.sendKeys(data);
+            }
+           catch(Exception e)
+            {
+             System.out.println(e.getMessage());
+             System.out.println(e.getCause());
+             e.printStackTrace();
+            }
+          }
+  @FindBy(xpath="//input[@id=\"general_maxValue\"]")
+      WebElement mvala;
+         public void MaxValueA()
+          {
+           try
+            {
+             FileLocation=new File("./Data/Promotion.xlsx");
+             FileName=new FileInputStream(FileLocation);
+             Work=new XSSFWorkbook(FileName);
+             sheet=Work.getSheetAt(0);
+             String data = sheet.getRow(1).getCell(6).toString();
+             mvala.sendKeys(data);
+            }
+           catch(Exception e)
+            {
+             System.out.println(e.getMessage());
+             System.out.println(e.getCause());
+             e.printStackTrace();
+            }
+        }
+  @FindBy(xpath="//input[@id=\"general_validCount\"]")
+      WebElement mcoua;
+         public void MaxCountForThisCouponA()
+          {
+           try
+            {
+             FileLocation=new File("./Data/Promotion.xlsx");
+             FileName=new FileInputStream(FileLocation);
+             Work=new XSSFWorkbook(FileName);
+             sheet=Work.getSheetAt(0);
+             String data = sheet.getRow(1).getCell(7).toString();
+             mcoua.sendKeys(data);
+            }
+           catch(Exception e)
+            {
+             System.out.println(e.getMessage());
+             System.out.println(e.getCause());
+             e.printStackTrace();
+            }
+         }
+  @FindBy(xpath="//input[@id=\"general_couponCode\"]")
+      WebElement coupa;
+         public void CouponCodeA()
+          {
+           try
+            {
+             FileLocation=new File("./Data/Promotion.xlsx");
+             FileName=new FileInputStream(FileLocation);
+             Work=new XSSFWorkbook(FileName);
+             sheet=Work.getSheetAt(0);
+             String data = sheet.getRow(1).getCell(8).getStringCellValue();
+             coupa.sendKeys(data);
+            }
+          catch(Exception e)
+           {
+            System.out.println(e.getMessage());
+            System.out.println(e.getCause());
+            e.printStackTrace();
+           }
+         }
+  @FindBy(xpath="//input[@id=\"general_validFrom\"]")
+      WebElement froma;
+         public void ValidFromA()
+          {
+           froma.click();
+           driver.findElement(By.xpath("(//a[.='Now'])[1]")).click();
+          }
+  @FindBy(xpath="//input[@id=\"general_validUntil\"]")
+       WebElement untila;
+          public void ValidUntilA() throws InterruptedException
+           {
+        	 untila.click();
+        	 Thread.sleep(2000);
+        	 driver.findElement(By.xpath("(//button[@class=\"ant-picker-header-next-btn\"])[2]")).click();
+        	 Thread.sleep(2000);
+        	 driver.findElement(By.xpath("(//div[.='11'])[5]")).click();
+        	 Thread.sleep(2000);
+        	 driver.findElement(By.xpath("(//span[.='OK'])[2]")).click();
+		   }
+ @FindBy(xpath="//button[@type=\"submit\"]")
+     WebElement sub;
+        public void Submit()
+         {
+          sub.click();
+         }
+ @FindBy(xpath="//input[@class=\"ant-input\"]")
+     WebElement ser;
+        public void Search1()
+         {
+          try
+      	   {
+      	    FileLocation=new File("./Data/Promotion.xlsx");
+      	    FileName=new FileInputStream(FileLocation);
+      	    Work=new XSSFWorkbook(FileName);
+      	    sheet=Work.getSheetAt(0);
+      	    String data = sheet.getRow(1).getCell(0).getStringCellValue();
+      	    ser.sendKeys(data);
+      	   }
+      	  catch(Exception e)
+      	   {
+      		System.out.println(e.getMessage());
+      		System.out.println(e.getCause());
+      		e.printStackTrace();
+ 		   }
+        }
+        //edit
+ @FindBy(xpath="(//span[@aria-label=\"edit\"])[1]")
+     WebElement edi;
+        public void EditButton()
+         {
+          edi.click();
+		 }
+@FindBy(xpath="//input[@id=\"general_name\"]")
+    WebElement namee;
+       public void NameEE()
+        {
+         try
+          {
+           FileLocation=new File("./Data/Promotion.xlsx");
+           FileName=new FileInputStream(FileLocation);
+           Work=new XSSFWorkbook(FileName);
+           sheet=Work.getSheetAt(0);
+           String data = sheet.getRow(2).getCell(0).getStringCellValue();
+           namee.sendKeys(Keys.CONTROL+"a");
+           namee.sendKeys(data);
+          }
+         catch(Exception e)
+          {
+           System.out.println(e.getMessage());
+           System.out.println(e.getCause());
+           e.printStackTrace();
+   		  }
+        }	
+@FindBy(xpath="//input[@id=\"general_nameAr\"]")
+    WebElement nameea;
+       public void NameEA()
+        {
+         try
+          {
+           FileLocation=new File("./Data/Promotion.xlsx");
+           FileName=new FileInputStream(FileLocation);
+           Work=new XSSFWorkbook(FileName);
+           sheet=Work.getSheetAt(0);
+           String data = sheet.getRow(2).getCell(1).getStringCellValue();
+           nameea.sendKeys(Keys.CONTROL+"a");
+           nameea.sendKeys(data);
+          }
+         catch(Exception e)
+          {
+           System.out.println(e.getMessage());
+           System.out.println(e.getCause());
+           e.printStackTrace();
+          }
+       }
+@FindBy(xpath="//textarea[@id=\"general_description\"]")
+    WebElement disee;
+       public void DescriptionEE()
+        {
+         try
+          {
+           FileLocation=new File("./Data/Promotion.xlsx");
+           FileName=new FileInputStream(FileLocation);
+           Work=new XSSFWorkbook(FileName);
+           sheet=Work.getSheetAt(0);
+           String data = sheet.getRow(2).getCell(2).getStringCellValue();
+           disee.sendKeys(Keys.CONTROL+"a");
+           disee.sendKeys(data);
+          }
+         catch(Exception e)
+          {
+           System.out.println(e.getMessage());
+           System.out.println(e.getCause());
+           e.printStackTrace();
+          }
+       }
+@FindBy(xpath="//textarea[@id=\"general_descriptionAr\"]")
+    WebElement disea;
+       public void DescriptionEA()
+        {
+         try
+          {
+           FileLocation=new File("./Data/Promotion.xlsx");
+           FileName=new FileInputStream(FileLocation);
+           Work=new XSSFWorkbook(FileName);
+           sheet=Work.getSheetAt(0);
+           String data = sheet.getRow(2).getCell(3).getStringCellValue();
+           disea.sendKeys(Keys.CONTROL+"a");
+           disea.sendKeys(data);
+          }
+         catch(Exception e)
+          {
+           System.out.println(e.getMessage());
+           System.out.println(e.getCause());
+           e.printStackTrace();
+          }
+       }
+       public void ValueTypeE()
+       {
+        try
+        {
+         WebElement element = driver.findElement(By.xpath("//label[.='Value Type']/../following-sibling::div[1]/div[1]/div[1]/div[1]/div[1]"));
+         FileLocation=new File("./Data/Promotion.xlsx");
+         FileName=new FileInputStream(FileLocation);
+         Work=new XSSFWorkbook(FileName);
+         sheet=Work.getSheetAt(0);
+         String data=sheet.getRow(2).getCell(4).getStringCellValue();
+         JavascriptExecutor js = (JavascriptExecutor) driver;
+         js.executeScript("arguments[0].scrollIntoView();", element);
+         element.click();
+         String a="number";
+          if(data.equalsIgnoreCase(a))
+          {
+           driver.findElement(By.xpath("(//div[.='Number'])[2]")).click();
+          }
+         else 
+         {
+         	driver.findElement(By.xpath("(//div[.='Percent'])[2]")).click();	
+     	}
+        }
+        catch (Exception e)
+        {
+         System.out.println(e.getMessage());
+         System.out.println(e.getCause());
+         e.printStackTrace();
+        }
+       }
+@FindBy(xpath="//input[@id=\"general_value\"]")
+    WebElement vale;
+       public void ValueE()
+        {
+         try
+          {
+           FileLocation=new File("./Data/Promotion.xlsx");
+           FileName=new FileInputStream(FileLocation);
+           Work=new XSSFWorkbook(FileName);
+           sheet=Work.getSheetAt(0);
+           String data = sheet.getRow(2).getCell(5).toString();
+           vale.sendKeys(Keys.CONTROL+"a");
+           vale.sendKeys(data);
+          }
+         catch(Exception e)
+          {
+           System.out.println(e.getMessage());
+           System.out.println(e.getCause());
+           e.printStackTrace();
+          }
+       }
+@FindBy(xpath="//input[@id=\"general_maxValue\"]")
+    WebElement mvale;
+       public void MaxValueE()
+        {
+         try
+          {
+           FileLocation=new File("./Data/Promotion.xlsx");
+           FileName=new FileInputStream(FileLocation);
+           Work=new XSSFWorkbook(FileName);
+           sheet=Work.getSheetAt(0);
+           String data = sheet.getRow(2).getCell(6).toString();
+           mvale.sendKeys(Keys.CONTROL+"a");
+           mvale.sendKeys(data);  
+          }
+         catch(Exception e)
+          {
+           System.out.println(e.getMessage());
+           System.out.println(e.getCause());
+           e.printStackTrace();
+          }
+       }
+@FindBy(xpath="//input[@id=\"general_validCount\"]")
+    WebElement mcoue;
+       public void MaxCountForThisCouponE()
+        {
+         try
+          {
+           FileLocation=new File("./Data/Promotion.xlsx");
+           FileName=new FileInputStream(FileLocation);
+           Work=new XSSFWorkbook(FileName);
+           sheet=Work.getSheetAt(0);
+           String data = sheet.getRow(2).getCell(7).toString();
+           mcoue.sendKeys(Keys.CONTROL+"a");
+           mcoue.sendKeys(data);
+          }
+         catch(Exception e)
+          {
+           System.out.println(e.getMessage());
+           System.out.println(e.getCause());
+           e.printStackTrace();
+          }
+        }
+@FindBy(xpath="//input[@id=\"general_couponCode\"]")
+    WebElement coupe;
+       public void CouponCodeE()
+        {
+         try
+          {
+           FileLocation=new File("./Data/Promotion.xlsx");
+           FileName=new FileInputStream(FileLocation);
+           Work=new XSSFWorkbook(FileName);
+           sheet=Work.getSheetAt(0);
+           String data = sheet.getRow(2).getCell(8).getStringCellValue();
+           coupe.sendKeys(Keys.CONTROL+"a");
+           coupe.sendKeys(data);
+          }
+         catch(Exception e)
+          {
+           System.out.println(e.getMessage());
+           System.out.println(e.getCause());
+           e.printStackTrace();
+          }
+       }
+@FindBy(xpath="//input[@id=\"general_validFrom\"]")
+    WebElement frome;
+       public void ValidFromE()
+        {
+         frome.click();
+         driver.findElement(By.xpath("(//a[.='Now'])[1]")).click();
+        }
+@FindBy(xpath="//input[@id=\"general_validUntil\"]")
+    WebElement untile;
+       public void ValidUntilE() throws InterruptedException
+        {
+         untile.click();
+         
+         Thread.sleep(8000);
+         driver.findElement(By.xpath("(//a[.='Now'])[2]")).click();
+ 	   }
+@FindBy(xpath="//input[@class=\"ant-input\"]")
+    WebElement ser2;
+       public void Search2()
+        {
+    	   
+        // driver.findElement(By.xpath("//span[@class=\"anticon anticon-close-circle\"]")).click();
+         try
+       	  {
+       	   FileLocation=new File("./Data/Promotion.xlsx");
+       	   FileName=new FileInputStream(FileLocation);
+       	   Work=new XSSFWorkbook(FileName);
+       	   sheet=Work.getSheetAt(0);
+       	   String data = sheet.getRow(2).getCell(0).getStringCellValue();
+       	   ser2.sendKeys(data);
+       	  }
+       	 catch(Exception e)
+       	  {
+       	   System.out.println(e.getMessage());
+       	   System.out.println(e.getCause());
+       	   e.printStackTrace();
+  		  }
+       }
+ 
+@FindBy(xpath="(//button[@role=\"switch\"])[1]")
+    WebElement actanddeact;
+       public void ActivateAndDeactivate()
+        {
+       	 actanddeact.click();
+		}
+//Deletepromotion     
+@FindBy(xpath="(//span[@aria-label=\"delete\"])[1]")
+     WebElement del;
+        public void DeleteButton()
+          {
+           del.click();
+		  }
+@FindBy(xpath="//input[@id=\"delete-form_confirm\"]")
+    WebElement detf;
+       public void DeleteTF() throws InterruptedException
+        {
+         String DeleteData=driver.findElement(By.xpath("//code")).getText();
+         detf.sendKeys(DeleteData);
+        }
+@FindBy(xpath="//button[@type=\"submit\"]")
+    WebElement dele;
+       public void DeleteButtonSub()
+         {
+          dele.click();
+         }	 
+       
+       
+       
+       
+ 
+}

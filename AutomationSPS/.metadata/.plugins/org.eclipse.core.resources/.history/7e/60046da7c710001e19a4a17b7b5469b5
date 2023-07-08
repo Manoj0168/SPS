@@ -1,0 +1,153 @@
+package MainSiteSubscriptionSettings;
+
+import java.io.IOException;
+import org.openqa.selenium.support.PageFactory;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+import LoginPage.LoginPage;
+import MainSiteSubscriptionSettingsFun.PaymentsFun;
+import Pages.UserProfilePage;
+import Utils.TestUtils;
+import Utils.Utilities;
+
+public class Payments extends PaymentsFun
+ {
+  public Payments() throws IOException
+   {
+    super();
+    PageFactory.initElements(driver,this);
+	}
+  LoginPage loginPage;
+  UserProfilePage userpropage;
+  TestUtils utils;
+  Utilities utilize;
+  public int DataSet = -1;
+	 @BeforeMethod
+	  public void setUp() throws IOException, InterruptedException 
+	   {
+	    openBrowser();
+	    loginPage = new LoginPage();
+	    utils = new TestUtils();
+	    utilize = new Utilities();
+	   }
+  /*@Test(priority=1)
+   public void AddPayments() throws InterruptedException, IOException
+    {
+	 loginPage.login(prop.getProperty("username"), prop.getProperty("password"));
+	 Thread.sleep(3000);
+	 PaymentsFun sub=new PaymentsFun();
+	 Thread.sleep(2000);
+	 sub.Extendbutton();
+	 Thread.sleep(2000);
+	 sub.sitebutton();
+	 Thread.sleep(2000);
+	 sub.SearchMainSite();
+	 Thread.sleep(2000);
+	 sub.EditButton();
+	 Thread.sleep(2000);
+	 sub.SubscriptionSettingsButton();
+	 Thread.sleep(2000);
+	 sub.PaymentsButton();
+	 sub.PayoutSettings();
+	 Thread.sleep(2000);
+	 sub.VendorsA1();
+	 Thread.sleep(2000);
+	 sub.PercentageA1();
+	 Thread.sleep(2000);
+	 sub.AddVendor();
+	 Thread.sleep(2000);
+	 sub.VendorsA2();
+	 Thread.sleep(20000);
+	 sub.PercentageA2();
+	 Thread.sleep(2000);
+	 sub.SaveButton();
+	 Thread.sleep(1000);
+	 sub.Message();
+    }
+  @Test(priority=2)
+  public void EditPayments() throws InterruptedException, IOException
+   {
+	 loginPage.login(prop.getProperty("username"), prop.getProperty("password"));
+	 Thread.sleep(3000);
+	 PaymentsFun sub=new PaymentsFun();
+	 Thread.sleep(2000);
+	 sub.Extendbutton();
+	 Thread.sleep(2000);
+	 sub.sitebutton();
+	 Thread.sleep(2000);
+	 sub.SearchMainSite();
+	 Thread.sleep(2000);
+	 sub.EditButton();
+	 Thread.sleep(2000);
+	 sub.SubscriptionSettingsButton();
+	 Thread.sleep(2000);
+	 sub.PaymentsButton();
+	 //edit
+	 Thread.sleep(2000);
+	 sub.VendorsE1();
+	 Thread.sleep(2000);
+	 sub.PercentageE1();
+	 Thread.sleep(2000);
+	 sub.PercentageE2();
+	 Thread.sleep(2000);
+	 sub.SaveButton();
+	 Thread.sleep(1000);
+	 sub.Message();
+	 Thread.sleep(2000);
+   }
+  @Test(priority=3)
+  public void DeletePayments() throws InterruptedException, IOException
+   {
+	 loginPage.login(prop.getProperty("username"), prop.getProperty("password"));
+	 Thread.sleep(3000);
+	 PaymentsFun sub=new PaymentsFun();
+	 Thread.sleep(2000);
+	 sub.Extendbutton();
+	 Thread.sleep(2000);
+	 sub.sitebutton();
+	 Thread.sleep(2000);
+	 sub.SearchMainSite();
+	 Thread.sleep(2000);
+	 sub.EditButton();
+	 Thread.sleep(2000);
+	 sub.SubscriptionSettingsButton();
+	 Thread.sleep(2000);
+	 sub.PaymentsButton();
+	 //Delete
+	 sub.Delete();
+	 Thread.sleep(2000);
+	 sub.PercentageD1();
+	 Thread.sleep(2000);
+	 sub.SaveButton();
+	 Thread.sleep(1000);
+	 sub.Message();
+	 }*/
+   @Test(priority=1)
+	   public void AddPayments() throws InterruptedException, IOException
+	    {
+		 loginPage.login(prop.getProperty("username"), prop.getProperty("password"));
+		 Thread.sleep(3000);
+		 PaymentsFun sub=new PaymentsFun();
+		 Thread.sleep(2000);
+		 sub.Extendbutton();
+		 Thread.sleep(2000);
+		 sub.sitebutton();
+		 Thread.sleep(2000);
+		 sub.SearchMainSite();
+		 Thread.sleep(2000);
+		 sub.EditButton();
+		 Thread.sleep(2000);
+		 sub.SubscriptionSettingsButton();
+		 Thread.sleep(2000);
+		 sub.PaymentsButton();
+		 sub.PayoutSettings();
+		 Thread.sleep(2000);
+		 sub.VendorsA1();
+		 Thread.sleep(2000);
+		 sub.PercentageD1();
+		 sub.SaveButton();
+		 Thread.sleep(1000);
+		 sub.Message();
+		}
+	
+}

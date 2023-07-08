@@ -1,0 +1,134 @@
+package SubSite;
+
+import java.io.IOException;
+
+import org.openqa.selenium.support.PageFactory;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
+import LoginPage.LoginPage;
+import Pages.UserProfilePage;
+import SubSiteFun.DeviceManagementKioskFun;
+import SubSiteFun.DeviceManagementPGSFun;
+import SubSiteFun.FloorPlanFun;
+import Utils.TestUtils;
+import Utils.Utilities;
+
+public class DeviceManagementPGS extends DeviceManagementPGSFun
+ {
+  public DeviceManagementPGS() throws IOException 
+   {
+	super();
+    PageFactory.initElements(driver,this);
+   }
+  LoginPage loginPage;
+  UserProfilePage userpropage;
+  TestUtils utils;
+  Utilities utilize;
+  public int DataSet = -1;
+	 @BeforeMethod
+	  public void setUp() throws IOException, InterruptedException 
+	   {
+	    openBrowser();
+	    loginPage = new LoginPage();
+	    utils = new TestUtils();
+	    utilize = new Utilities();
+	   }
+	/* @Test(priority=1)
+	   public void SubSiteFloorPlanAdd() throws InterruptedException, IOException
+	     {
+		  loginPage.login(prop.getProperty("username"), prop.getProperty("password"));
+		  Thread.sleep(3000);
+		  DeviceManagementPGSFun sub=new DeviceManagementPGSFun();
+		  Thread.sleep(2000);
+		  sub.Extendbutton();
+		  Thread.sleep(2000);
+		  sub.sitebutton();
+		  Thread.sleep(2000);
+		  sub.SearchMainSite();
+		  Thread.sleep(1000);
+		  sub.EditButton();
+		  sub.SubSiteButton();
+		  Thread.sleep(4000);
+		  sub.FloorPlanButton();
+		  Thread.sleep(2000);
+		  sub.AddNewFloorPlan();
+		  Thread.sleep(2000);
+		  sub.SelectFloorA();
+		  sub.TotalSpaceFloorPlanA();
+		  sub.LongitudeFPA();
+		  sub.LatitudeFPA();
+		  sub.ParkingServiceAddonScriptionFloorPlanA();
+		  Thread.sleep(2000);
+		  sub.SaveFloorPlanButton();
+		  Thread.sleep(2000);
+		  sub.Message();
+		 }*/
+	 @Test(priority=2)
+	   public void AddPGS() throws InterruptedException, IOException
+	    {
+		 loginPage.login(prop.getProperty("username"), prop.getProperty("password"));
+		 Thread.sleep(3000);
+		 DeviceManagementPGSFun sub=new DeviceManagementPGSFun();
+		 Thread.sleep(2000);
+		 sub.Extendbutton();
+		 Thread.sleep(2000);
+		 sub.sitebutton();
+		 Thread.sleep(2000);
+		 sub.SearchMainSite();
+		 Thread.sleep(1000);
+		 sub.EditButton();
+		 sub.SubSiteButton();
+		 Thread.sleep(2000);
+		 sub.DeviceManagementButton();
+		 Thread.sleep(2000);
+		 sub.AddButton();
+		 Thread.sleep(2000);
+		 sub.SelectDevice();
+		 sub.Floor();
+		 sub.ManufacturerA();
+		 sub.ModelA();
+		 sub.IPAddressA();
+		 sub.PortA();
+		 sub.AuthKeyA();
+		 sub.GroupIDA();
+		 sub.NoOfConcentratorA();
+		 sub.NoOfSensorsA();
+		 sub.Submit();
+		 Thread.sleep(1000);
+		 sub.Message();
+		}
+	 @Test(priority=3)
+	   public void EditPGS() throws InterruptedException, IOException
+	    {
+		 loginPage.login(prop.getProperty("username"), prop.getProperty("password"));
+		 Thread.sleep(3000);
+		 DeviceManagementPGSFun sub=new DeviceManagementPGSFun();
+		 Thread.sleep(2000);
+		 sub.Extendbutton();
+		 Thread.sleep(2000);
+		 sub.sitebutton();
+		 Thread.sleep(2000);
+		 sub.SearchMainSite();
+		 Thread.sleep(1000);
+		 sub.EditButton();
+		 sub.SubSiteButton();
+		 Thread.sleep(2000);
+		 sub.DeviceManagementButton();
+		 Thread.sleep(2000);
+		 sub.EditButtonPGS();
+		 Thread.sleep(2000);
+		 sub.ManufacturerE();
+		 sub.ModelE();
+		 sub.IPAddressE();
+		 sub.PortE();
+		 sub.AuthKeyE();
+		 sub.GroupIDE();
+		 sub.NoOfConcentratorE();
+		 sub.NoOfSensorsE();
+		 sub.Submit();
+		 Thread.sleep(1000);
+		 sub.Message();
+	    }
+
+}

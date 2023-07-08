@@ -1,0 +1,446 @@
+package SubSiteFun;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+import Base.BasePage;
+
+public class GatesFun extends BasePage
+ {
+  public GatesFun() throws IOException 
+   {
+	super();
+    PageFactory.initElements(driver,this);
+   }
+  @FindBy(xpath="//div[@class=\"ant-pro-sider-links\"]")
+  WebElement more;
+     public void Extendbutton()
+      {
+       more.click();
+      }
+@FindBy(xpath="//span[contains(.,'Successfully')]")
+  WebElement msg;
+     public void Message() throws IOException
+      {
+       String ms=msg.getText();
+       System.out.println(ms);
+      }
+@FindBy(xpath="//span[.='Sites']")
+  WebElement site;
+     public void sitebutton()
+      {
+       site.click();
+      }
+File FileLocation;
+FileInputStream FileName;
+XSSFWorkbook Work;
+XSSFSheet sheet;
+@FindBy(xpath="//input[@type=\"text\"]")
+  WebElement ser;
+     public void SearchMainSite()
+      {
+	       try
+	        {
+	         FileLocation=new File("./Data/Site.xlsx");
+         FileName=new FileInputStream(FileLocation);
+         Work = new XSSFWorkbook(FileName);
+         sheet=Work.getSheetAt(0);
+         String data=sheet.getRow(0).getCell(1).getStringCellValue();
+	         ser.sendKeys(data);
+	        }
+	       catch(Exception e) 
+	        {
+	     System.out.println(e.getMessage());
+	     System.out.println(e.getCause());
+	     e.printStackTrace();
+	    }
+      }
+@FindBy(xpath="//span[@aria-label=\"edit\"]")
+  WebElement edi;
+     public void EditButton()
+      {
+	       edi.click();
+      }
+@FindBy(xpath="(//div[@role=\"tab\"])[2]")
+  WebElement subsite;
+     public void SubSiteButton()
+      {
+	       subsite.click();
+      }
+     //Gates
+     @FindBy(xpath="(//div[.='Gates'])[2]")
+         WebElement gate;
+            public void GateButton()
+             {
+              gate.click();
+			 }
+     @FindBy(xpath="//span[.='Add New Gate']")
+         WebElement addnewgate;
+            public void AddNewGate()
+             {
+              addnewgate.click();
+			 }
+     @FindBy(xpath="//input[@id=\"basic_name\"]")
+         WebElement gnamae;
+            public void GateNameAE()
+             {
+              try
+               {
+                FileLocation=new File("./Data/Site.xlsx");
+                FileName=new FileInputStream(FileLocation);
+                Work = new XSSFWorkbook(FileName);
+                sheet=Work.getSheetAt(3);
+                String data=sheet.getRow(1).getCell(0).toString();
+                gnamae.sendKeys(data);
+               }
+              catch(Exception e) 
+               {
+                System.out.println(e.getMessage());
+                System.out.println(e.getCause());
+                e.printStackTrace();
+               }
+             }
+     @FindBy(xpath="//input[@id=\"basic_nameAr\"]")
+         WebElement gnamaa;
+            public void GateNameAA()
+             {
+              try
+               {
+                FileLocation=new File("./Data/Site.xlsx");
+                FileName=new FileInputStream(FileLocation);
+                Work = new XSSFWorkbook(FileName);
+                sheet=Work.getSheetAt(3);
+                String data=sheet.getRow(1).getCell(1).toString();
+                gnamaa.sendKeys(data);
+               }
+              catch(Exception e) 
+               {
+                System.out.println(e.getMessage());
+                System.out.println(e.getCause());
+                e.printStackTrace();
+               }
+             } 
+     @FindBy(xpath="//textarea[@id=\"basic_description\"]")
+         WebElement gdesae;
+            public void GateDescriptionAE()
+             {
+              try
+               {
+                FileLocation=new File("./Data/Site.xlsx");
+                FileName=new FileInputStream(FileLocation);
+                Work = new XSSFWorkbook(FileName);
+                sheet=Work.getSheetAt(3);
+                String data=sheet.getRow(1).getCell(2).toString();
+                gdesae.sendKeys(data);
+               }
+              catch(Exception e) 
+               {
+                System.out.println(e.getMessage());
+                System.out.println(e.getCause());
+                e.printStackTrace();
+               }
+             }
+     @FindBy(xpath="//textarea[@id=\"basic_descriptionAr\"]")
+         WebElement gdesaa;
+            public void GateDescriptionAA()
+             {
+              try
+               {
+                FileLocation=new File("./Data/Site.xlsx");
+                FileName=new FileInputStream(FileLocation);
+                Work = new XSSFWorkbook(FileName);
+                sheet=Work.getSheetAt(3);
+                String data=sheet.getRow(1).getCell(3).toString();
+                gdesaa.sendKeys(data);
+               }
+              catch(Exception e) 
+               {
+                System.out.println(e.getMessage());
+                System.out.println(e.getCause());
+                e.printStackTrace();
+               }
+             }    
+     @FindBy(xpath="(//input[@class=\"ant-input-number-input\"])[3]")
+         WebElement longiga;
+            public void LongitudeGA()
+             {
+              try
+               {
+                FileLocation=new File("./Data/Site.xlsx");
+                FileName=new FileInputStream(FileLocation);
+                Work=new XSSFWorkbook(FileName);
+                sheet=Work.getSheetAt(3);
+                String data=sheet.getRow(1).getCell(4).toString();
+                longiga.sendKeys(data);
+               }
+              catch(Exception e) 
+               {
+                System.out.println(e.getMessage());
+                System.out.println(e.getCause());
+                e.printStackTrace();
+               }
+             }
+     @FindBy(xpath="(//input[@class=\"ant-input-number-input\"])[4]")
+         WebElement latga;
+            public void LatitudeGA()
+             {
+              try
+               {
+                FileLocation=new File("./Data/Site.xlsx");
+                FileName=new FileInputStream(FileLocation);
+                Work = new XSSFWorkbook(FileName);
+                sheet=Work.getSheetAt(3);
+                String data=sheet.getRow(1).getCell(5).toString();
+                latga.sendKeys(data);
+                driver.findElement(By.xpath("(//span[@aria-label=\"environment\"])[2]")).click();
+                Thread.sleep(2000);
+                driver.findElement(By.xpath("//button[.='Ok']")).click();
+               }
+              catch(Exception e) 
+               {
+                System.out.println(e.getMessage());
+                System.out.println(e.getCause());
+                e.printStackTrace();
+               }
+             }
+     @FindBy(xpath="//input[@id=\"basic_siteGateTypeId\"]")
+         WebElement gta;
+            public void GateTypeGA()
+             {
+              try
+               {
+                FileLocation=new File("./Data/Site.xlsx");
+                FileName=new FileInputStream(FileLocation);
+                Work = new XSSFWorkbook(FileName);
+                sheet=Work.getSheetAt(3);
+                String data=sheet.getRow(1).getCell(6).toString();
+                gta.sendKeys(data);
+                Thread.sleep(1000);
+                gta.sendKeys(Keys.ENTER);
+               }
+              catch(Exception e) 
+               {
+                System.out.println(e.getMessage());
+                System.out.println(e.getCause());
+                e.printStackTrace();
+               }
+             } 
+     @FindBy(xpath="//button[.='Add Gate']")
+         WebElement adgate;
+            public void AddGate()
+             {
+              adgate.click();
+             }
+     @FindBy(xpath="//div[.='IsActive']/../div[2]//div[1]//div[1]//div")
+         WebElement gactde;
+            public void GateActivateDactivate()
+             {
+              gactde.click();
+			 }
+     @FindBy(xpath="(//div[@class=\"ant-collapse-expand-icon\"])[2]")
+         WebElement gedt;
+            public void EditGate()
+             {
+              gedt.click();
+			 }
+     //Edit gate
+     @FindBy(xpath="//input[@id=\"basic_name\"]")
+         WebElement gnamee;
+            public void GateNameEE()
+             {
+              try
+               {
+                FileLocation=new File("./Data/Site.xlsx");
+                FileName=new FileInputStream(FileLocation);
+                Work = new XSSFWorkbook(FileName);
+                sheet=Work.getSheetAt(3);
+                String data=sheet.getRow(2).getCell(0).toString();
+                gnamee.sendKeys(Keys.CONTROL+"a");
+                Thread.sleep(1000);
+                gnamee.sendKeys(Keys.DELETE);
+                gnamee.sendKeys(data);
+               }
+              catch(Exception e) 
+               {
+                System.out.println(e.getMessage());
+                System.out.println(e.getCause());
+                e.printStackTrace();
+               }
+             }
+     @FindBy(xpath="//input[@id=\"basic_nameAr\"]")
+          WebElement gnamea;
+             public void GateNameEA()
+              {
+               try
+                {
+                 FileLocation=new File("./Data/Site.xlsx");
+                 FileName=new FileInputStream(FileLocation);
+                 Work = new XSSFWorkbook(FileName);
+                 sheet=Work.getSheetAt(3);
+                 String data=sheet.getRow(2).getCell(1).toString();
+                 gnamea.sendKeys(Keys.CONTROL+"a");
+                 gnamea.sendKeys(Keys.DELETE);
+                 gnamea.sendKeys(data);
+                }
+               catch(Exception e) 
+                {
+                 System.out.println(e.getMessage());
+                 System.out.println(e.getCause());
+                 e.printStackTrace();
+                }
+              } 
+     @FindBy(xpath="//textarea[@id=\"basic_description\"]")
+         WebElement gdesee;
+            public void GateDescriptionEE()
+             {
+              try
+               {
+                FileLocation=new File("./Data/Site.xlsx");
+                FileName=new FileInputStream(FileLocation);
+                Work = new XSSFWorkbook(FileName);
+                sheet=Work.getSheetAt(3);
+                String data=sheet.getRow(2).getCell(2).toString();
+                gdesee.sendKeys(Keys.CONTROL+"a");
+                gdesee.sendKeys(Keys.DELETE);
+                gdesee.sendKeys(data);
+               }
+              catch(Exception e) 
+               {
+                System.out.println(e.getMessage());
+                System.out.println(e.getCause());
+                e.printStackTrace();
+               }
+             }
+     @FindBy(xpath="//textarea[@id=\"basic_descriptionAr\"]")
+         WebElement gdesea;
+            public void GateDescriptionEA()
+             {
+              try
+               {
+                FileLocation=new File("./Data/Site.xlsx");
+                FileName=new FileInputStream(FileLocation);
+                Work = new XSSFWorkbook(FileName);
+                sheet=Work.getSheetAt(3);
+                String data=sheet.getRow(2).getCell(3).toString();
+                gdesea.sendKeys(Keys.CONTROL+"a");
+                gdesea.sendKeys(Keys.DELETE);
+                gdesea.sendKeys(data);
+               }
+              catch(Exception e) 
+               {
+                System.out.println(e.getMessage());
+                System.out.println(e.getCause());
+                e.printStackTrace();
+               }
+             }    
+     @FindBy(xpath="(//input[@class=\"ant-input-number-input\"])[3]")
+         WebElement longige;
+            public void LongitudeGE()
+             {
+              try
+               {
+                FileLocation=new File("./Data/Site.xlsx");
+                FileName=new FileInputStream(FileLocation);
+                Work=new XSSFWorkbook(FileName);
+                sheet=Work.getSheetAt(3);
+                String data=sheet.getRow(2).getCell(4).toString();
+                longige.sendKeys(Keys.CONTROL+"a");
+                longige.sendKeys(Keys.DELETE);
+                longige.sendKeys(data);
+                  }
+                 catch(Exception e) 
+                  {
+                   System.out.println(e.getMessage());
+                   System.out.println(e.getCause());
+                   e.printStackTrace();
+                  }
+               }
+     @FindBy(xpath="(//input[@class=\"ant-input-number-input\"])[4]")
+         WebElement latge;
+            public void LatitudeGE()
+             {
+              try
+               {
+                FileLocation=new File("./Data/Site.xlsx");
+                FileName=new FileInputStream(FileLocation);
+                Work = new XSSFWorkbook(FileName);
+                sheet=Work.getSheetAt(3);
+                String data=sheet.getRow(2).getCell(5).toString();
+                latge.sendKeys(Keys.CONTROL+"a");
+                latge.sendKeys(Keys.DELETE);
+                latge.sendKeys(data);
+               }
+              catch(Exception e) 
+               {
+                System.out.println(e.getMessage());
+                System.out.println(e.getCause());
+                e.printStackTrace();
+               }
+             }
+     
+            public void GateTypeGE()
+             {
+              try
+               {
+                FileLocation=new File("./Data/Site.xlsx");
+                FileName=new FileInputStream(FileLocation);
+                Work = new XSSFWorkbook(FileName);
+                sheet=Work.getSheetAt(3);
+                String data=sheet.getRow(2).getCell(6).toString();
+                WebElement gte=driver.findElement(By.xpath("//label[.='Gate Type']/..//following-sibling::div[1]/div[1]/div[1]/div[1]/div[1]"));
+                JavascriptExecutor js=(JavascriptExecutor)driver;
+                js.executeScript("arguments[0].scrollIntoView();",gte);
+                Thread.sleep(2000);
+                gte.click();
+                Thread.sleep(1000);
+                
+                gte.sendKeys("Exit");
+                //driver.findElement(By.xpath("(//div[@class=\"ant-select-item-option-content\"])[2]")).click();
+                Thread.sleep(1000);
+                gte.sendKeys(Keys.ARROW_DOWN);
+                gte.sendKeys(Keys.ENTER);
+               }
+              catch(Exception e) 
+               {
+                System.out.println(e.getMessage());
+                System.out.println(e.getCause());
+                e.printStackTrace();
+               }
+             }
+            @FindBy(xpath="//button[.='Update']")
+            WebElement updatefl;
+               public void UpdateButton()
+                {
+        	       updatefl.click();
+             	 }
+        @FindBy(xpath="//span[@class=\"anticon anticon-delete\"]")
+            WebElement del;
+               public void Delete()
+                {
+                 del.click();
+ 			   }
+        @FindBy(xpath="//input[@id=\"delete-form_confirm\"]")
+            WebElement detf;
+               public void DeleteTF() throws InterruptedException
+                {
+                 String DeleteData=driver.findElement(By.xpath("//code")).getText();
+                 detf.sendKeys(DeleteData);
+                }
+        @FindBy(xpath="//button[@type=\"submit\"]")
+            WebElement dele;
+               public void DeleteButtonSub()
+                {
+                 dele.click();
+                }
+
+
+}
